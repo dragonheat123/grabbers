@@ -1,0 +1,3 @@
+Date, Irradiance Value21 Dec 2016 23:48, 0
+21 Dec 2016 23:49, 0
+21 Dec 2016 23:50, 0
