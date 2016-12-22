@@ -5,7 +5,7 @@ import datetime
 import os
 
 os.chdir('C:\\Users\\lorky\\Desktop\\weathergrabber') 
-head = 'Date, Irradiance Value'
+head = 'Date, Irradiance Value\n'
 otime = datetime.datetime.now()
 text_file = open("yishun_solar.txt", "w")      ##set file name
 text_file.write(head)
@@ -22,11 +22,15 @@ while 1:
         valuelist=(im[510, 862:1117,:])
         #cv2.imshow('show',im)
         value =0
-        if np.where(poi==valuelist)[1][1]==np.where(poi==valuelist)[1][2]:
-            value = float(np.where(poi==valuelist)[1][1]+1)/255*1200
+        for i in range(len(valuelist)):
+            if np.all(valuelist[i]==poi):
+                value = float(i+1)/255*1200
         text = datetime.datetime.now().strftime('%d %b %Y %H:%M')+', '+str(value)+ '\n'
         text_file = open("yishun_solar.txt", "a")
         text_file.write(text)
         text_file.close()
+        print text
         otime = otime+datetime.timedelta(minutes=1)
+        
+
         
