@@ -1,3 +1,4 @@
+
 import cv2
 import numpy as np
 import urllib2
@@ -14,7 +15,8 @@ text_file.close()
 while 1:
     if (datetime.datetime.now()-otime)>datetime.timedelta(minutes=1):
         hdr = {'User-Agent': 'Mozilla/5.0'}
-        req = urllib2.Request('http://www.solar-repository.sg/ftp_up/irradiance/NSR_IrrMap.png', headers=hdr)
+        #req = urllib2.Request('http://www.solar-repository.sg/ftp_up/irradiance/NSR_IrrMap.png', headers=hdr)
+        req = urllib2.Request('https://www.ema.gov.sg/cmsmedia/irradiance/plot.png', headers=hdr)
         con = urllib2.urlopen( req )
         im_array = np.asarray(bytearray(con.read()), dtype=np.uint8)
         im =  cv2.imdecode(im_array, cv2.IMREAD_COLOR)
@@ -31,6 +33,4 @@ while 1:
         text_file.close()
         print text
         otime = otime+datetime.timedelta(minutes=1)
-        
-
         
